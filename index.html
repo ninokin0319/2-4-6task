@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字検証サイト</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.5;
+        }
+        .textbox {
+            width: 60px;
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultHistory {
+            margin-top: 20px;
+        }
+        .result {
+            background-color: #eef;
+            border-left: 5px solid #007BFF;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>246課題</h1>
+    <h2>やること<br>
+        「2，4，6」<br>
+        この3つ数字は，あるルールに従って並んでいます．あなたにはそのルールを見つけてもらいます．<br>
+        あなたは以下のテキストボックスに数字を入力し，検証を押すことができます．<br>
+        検証を押すと，その数字の並びがそのルールに当てはまるかどうかを検証できます．<br>
+        ルールがわかるまで何度でも検証することができます．<br><br><br>
+        進め方<br>
+        手元に紙とペンを用意し，1回の検証ごとにどのようなルールだと思ったメモを取ってください．<br>
+        後で振り返りますので，この画面は更新などせずにそのままにしておいてください． <br><br>
+
+         ＊数字は半角で入力してください．</h2>
+    <div>
+        <input type="text" id="box1" class="textbox" placeholder="Box1">
+        <input type="text" id="box2" class="textbox" placeholder="Box2">
+        <input type="text" id="box3" class="textbox" placeholder="Box3">
+    </div>
+    <button onclick="validateNumbers()">検証</button>
+    <div id="resultHistory"></div>
+
+    <script>
+        function validateNumbers() {
+            const num1 = parseFloat(document.getElementById('box1').value);
+            const num2 = parseFloat(document.getElementById('box2').value);
+            const num3 = parseFloat(document.getElementById('box3').value);
+            
+            let result = `"${num1},${num2},${num3}"は`;
+            if (num1 < num2 && num2 < num3) {
+                result += "「ルールを満たす」";
+            } else {
+                result += "「ルールを満たさない」";
+            }
+            
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'result';
+            resultDiv.textContent = result;
+            document.getElementById('resultHistory').appendChild(resultDiv);
+        }
+    </script>
+</body>
+</html>
